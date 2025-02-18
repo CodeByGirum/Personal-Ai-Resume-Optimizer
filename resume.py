@@ -8,6 +8,7 @@ import io
 from fpdf import FPDF, XPos, YPos
 import json
 import time
+import streamlit.components.v1 as components
 
 # Update the secrets handling to be more secure
 def get_required_secrets():
@@ -291,6 +292,90 @@ custom_css = """
 }
 @keyframes fadeOut {
     to { opacity: 0; height: 0; margin: 0; }
+}
+
+/* Modern floating PDF container */
+.pdf-container {
+    background: var(--background-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Light theme */
+[data-theme="light"] .pdf-container {
+    --background-color: white;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme */
+[data-theme="dark"] .pdf-container {
+    --background-color: #1E1E1E;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.2),
+        0 2px 4px -1px rgba(0, 0, 0, 0.16),
+        0 20px 25px -5px rgba(255, 255, 255, 0.1),
+        0 10px 10px -5px rgba(255, 255, 255, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Hover effect */
+.pdf-container:hover {
+    transform: translateY(-4px);
+}
+
+/* Light theme hover */
+[data-theme="light"] .pdf-container:hover {
+    box-shadow: 
+        0 6px 8px -1px rgba(0, 0, 0, 0.12),
+        0 4px 6px -1px rgba(0, 0, 0, 0.08),
+        0 25px 30px -5px rgba(0, 0, 0, 0.12),
+        0 12px 12px -5px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark theme hover */
+[data-theme="dark"] .pdf-container:hover {
+    box-shadow: 
+        0 6px 8px -1px rgba(0, 0, 0, 0.24),
+        0 4px 6px -1px rgba(0, 0, 0, 0.18),
+        0 25px 30px -5px rgba(255, 255, 255, 0.12),
+        0 12px 12px -5px rgba(255, 255, 255, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Shared button styling for download and refine buttons */
+.stDownloadButton > button, .stButton > button {
+    background: linear-gradient(135deg, #6DD5FA, #2980B9) !important;
+    color: white !important;
+    padding: 0.6rem 1.2rem !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.stDownloadButton > button:hover, .stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+    background: linear-gradient(135deg, #2980B9, #6DD5FA) !important;
+}
+
+.stDownloadButton > button:active, .stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* Specific styling for sidebar buttons */
+.stSidebar .stButton > button {
+    width: 100% !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
 }
 </style>
 """
@@ -626,7 +711,7 @@ with st.sidebar.expander("Refine Specific Sections"):
     st.markdown("**Certifications**")
     refine_cert = st.checkbox("Certifications Bullet")
     
-    if st.button("Refine Selected Sections"):
+    if st.button("✨ Refine Selected Sections", use_container_width=True):
         job_desc = st.session_state.job_description
         if not job_desc.strip():
             st.warning("Please enter a job description first!")
@@ -885,9 +970,12 @@ def generate_pdf_file():
     
     # CERTIFICATIONS
     pdf.section_title("CERTIFICATIONS")
-    cert_b = st.session_state.get("refined_Certifications Bullet", default_refinements["Certifications Bullet"])
+    cert_b = st.session_state.get("refined_Certifications Bullet", 
+                                  default_refinements.get("Certifications Bullet", "Skills: Data Visualization (Power BI)"))
+    # Remove the leading hyphen if present so the bullet is consistent with others
+    cert_b = cert_b.lstrip("- ").strip()
     pdf.section_body("Google Data Analytics", bold=True)
-    pdf.section_body(cert_b, bold=False)
+    pdf.section_body(cert_b, bullet=True, bold=False)
     
     pdf_buffer = io.BytesIO()
     pdf.output(pdf_buffer)
@@ -919,19 +1007,145 @@ def extract_job_details(job_description):
 try:
     with st.spinner("Generating real-time preview..."):
         pdf_bytes = generate_pdf_file()
-        with st.container():
-            st.download_button(label="Download PDF", data=pdf_bytes, file_name="resume.pdf", mime="application/pdf")
+        
+        # Encode PDF for embedding
         base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
+        
+        # Add custom CSS for modern shadows and floating effect
+        st.markdown("""
+        <style>
+        /* Modern floating PDF container */
+        .pdf-container {
+            background: var(--background-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Light theme */
+        [data-theme="light"] .pdf-container {
+            --background-color: white;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dark theme */
+        [data-theme="dark"] .pdf-container {
+            --background-color: #1E1E1E;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.2),
+                0 2px 4px -1px rgba(0, 0, 0, 0.16),
+                0 20px 25px -5px rgba(255, 255, 255, 0.1),
+                0 10px 10px -5px rgba(255, 255, 255, 0.04),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hover effect */
+        .pdf-container:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Light theme hover */
+        [data-theme="light"] .pdf-container:hover {
+            box-shadow: 
+                0 6px 8px -1px rgba(0, 0, 0, 0.12),
+                0 4px 6px -1px rgba(0, 0, 0, 0.08),
+                0 25px 30px -5px rgba(0, 0, 0, 0.12),
+                0 12px 12px -5px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Dark theme hover */
+        [data-theme="dark"] .pdf-container:hover {
+            box-shadow: 
+                0 6px 8px -1px rgba(0, 0, 0, 0.24),
+                0 4px 6px -1px rgba(0, 0, 0, 0.18),
+                0 25px 30px -5px rgba(255, 255, 255, 0.12),
+                0 12px 12px -5px rgba(255, 255, 255, 0.06),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Shared button styling for download and refine buttons */
+        .stDownloadButton > button, .stButton > button {
+            background: linear-gradient(135deg, #6DD5FA, #2980B9) !important;
+            color: white !important;
+            padding: 0.6rem 1.2rem !important;
+            font-weight: 600 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .stDownloadButton > button:hover, .stButton > button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+            background: linear-gradient(135deg, #2980B9, #6DD5FA) !important;
+        }
+
+        .stDownloadButton > button:active, .stButton > button:active {
+            transform: translateY(0) !important;
+        }
+
+        /* Specific styling for sidebar buttons */
+        .stSidebar .stButton > button {
+            width: 100% !important;
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # Single centered download button
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            # Single styled download button
+            download_btn = st.download_button(
+                label="Download Resume",
+                data=pdf_bytes,
+                file_name="resume.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+                key="download_pdf"
+            )
+
+        # Enhanced PDF viewer with modern floating design
         pdf_display = f"""
-            <iframe 
-                class="pdf-container"
-                src="data:application/pdf;base64,{base64_pdf}#toolbar=0&navpanes=0&zoom=100"
-                width="100%"
-                height="800px"
-                type="application/pdf"
-                frameborder="0"
-            ></iframe>
+            <div class="pdf-container" style="margin-top: 2rem; padding: 1rem;">
+                <object
+                    data="data:application/pdf;base64,{base64_pdf}"
+                    type="application/pdf"
+                    width="100%"
+                    height="800px"
+                    style="border-radius: 8px; transition: all 0.3s ease;">
+                    <embed
+                        src="data:application/pdf;base64,{base64_pdf}"
+                        type="application/pdf"
+                        width="100%"
+                        height="800px"
+                        style="border-radius: 8px;">
+                        <iframe
+                            src="data:application/pdf;base64,{base64_pdf}"
+                            width="100%"
+                            height="800px"
+                            style="border-radius: 8px;"
+                            allowfullscreen>
+                            <p>This browser does not support PDF viewing. Please use the download button above.</p>
+                        </iframe>
+                </object>
+            </div>
         """
         st.markdown(pdf_display, unsafe_allow_html=True)
+
 except Exception as e:
     st.error(f"❌ Error generating PDF: {str(e)}")
+    if "Permission denied" in str(e):
+        st.error("💡 Tip: This error might be related to file permissions. Try using the download button instead.")
+    elif "Cannot find" in str(e):
+        st.error("💡 Tip: The PDF viewer might not be supported in your browser. Please use the download button.")
+    else:
+        st.error("💡 Tip: If you can't view the PDF, try using the download button above.")
