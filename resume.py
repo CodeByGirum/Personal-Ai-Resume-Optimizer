@@ -442,9 +442,9 @@ default_refinements = {
     "Selam Consultancy Bullet 1": "Developed Power BI dashboards, integrating strategic insights and demand planning, resulting in a 6% sales increase.",
     "Selam Consultancy Bullet 2": "Implemented an automated ETL framework with Python and SQL, improving data extraction from multiple sources and increasing dataset availability by 30%.",
     "Selam Consultancy Bullet 3": "Applied SQL queries for customer insights, statistical analysis, data modeling, and market research.",
-    "Sweepo Bullet 1": "Developed a business plan and organized a team to develop an AI-powered data error detection and cleaning system.",
-    "Sweepo Bullet 2": "Led a team of five in the software development process.",
-    "Sweepo Bullet 3": "Balanced business and technical aspects of product development.",
+    "Auxilary Bullet 1": "Developed a business plan and organized a team to develop an AI-powered data error detection and cleaning system.",
+    "Auxilary Bullet 2": "Led a team of five in the software development process.",
+    "Auxilary Bullet 3": "Balanced business and technical aspects of product development.",
     "Data Privacy Bullet 1": "Implemented automated code scans and statistical analysis to improve data privacy and governance.",
     "Data Privacy Bullet 2": "Integrated privacy-by-design principles in collaboration with cross-functional teams.",
     "Certifications Bullet": "- Skills: Data Visualization (Power BI)"
@@ -539,20 +539,20 @@ refine_prompt_templates = {
     Max length: 120 characters
     Original: {original}""",
 
-    # Sweepo Bullets
-    "Sweepo Bullet 1": """Highlight AI/ML aspects from JD. 
+    # Auxilary Bullets
+    "Auxilary Bullet 1": """Highlight AI/ML aspects from JD. 
     Format: Technical stack + business value
     Example: "Developed X using Y, achieving Z accuracy"
     Max length: 120 characters
     Original: {original}""",
     
-    "Sweepo Bullet 2": """Focus on leadership/team aspects. 
+    "Auxilary Bullet 2": """Focus on leadership/team aspects. 
     Format: Team size + development methodology
     Example: "Led X developers using Agile/Scrum"
     Max length: 120 characters
     Original: {original}""",
     
-    "Sweepo Bullet 3": """Balance technical/business requirements. 
+    "Auxilary Bullet 3": """Balance technical/business requirements. 
     Format: Dual-column approach
     Example: "Technical: X | Business: Y"
     Max length: 120 characters
@@ -699,10 +699,10 @@ with st.sidebar.expander("Refine Specific Sections"):
     refine_selam3 = st.checkbox("Selam Consultancy Bullet 3")
     
     st.markdown("**Key Projects**")
-    st.markdown("Sweepo.ai (Founded and Led)")
-    refine_sweepo1 = st.checkbox("Sweepo Bullet 1")
-    refine_sweepo2 = st.checkbox("Sweepo Bullet 2")
-    refine_sweepo3 = st.checkbox("Sweepo Bullet 3")
+    st.markdown("Auxilary.ai (Founded and Led)")
+    refine_Auxilary1 = st.checkbox("Auxilary Bullet 1")
+    refine_Auxilary2 = st.checkbox("Auxilary Bullet 2")
+    refine_Auxilary3 = st.checkbox("Auxilary Bullet 3")
     
     st.markdown("Data Privacy and Governance for BI, Privado.ai")
     refine_privacy1 = st.checkbox("Data Privacy Bullet 1")
@@ -733,9 +733,9 @@ with st.sidebar.expander("Refine Specific Sections"):
                 "Selam Consultancy Bullet 1": refine_selam1,
                 "Selam Consultancy Bullet 2": refine_selam2,
                 "Selam Consultancy Bullet 3": refine_selam3,
-                "Sweepo Bullet 1": refine_sweepo1,
-                "Sweepo Bullet 2": refine_sweepo2,
-                "Sweepo Bullet 3": refine_sweepo3,
+                "Auxilary Bullet 1": refine_Auxilary1,
+                "Auxilary Bullet 2": refine_Auxilary2,
+                "Auxilary Bullet 3": refine_Auxilary3,
                 "Data Privacy Bullet 1": refine_privacy1,
                 "Data Privacy Bullet 2": refine_privacy2,
                 "Certifications Bullet": refine_cert
@@ -953,13 +953,13 @@ def generate_pdf_file():
     
     # KEY PROJECTS
     pdf.section_title("KEY PROJECTS")
-    sweepo_b1 = st.session_state.get("refined_Sweepo Bullet 1", default_refinements["Sweepo Bullet 1"])
-    sweepo_b2 = st.session_state.get("refined_Sweepo Bullet 2", default_refinements["Sweepo Bullet 2"])
-    sweepo_b3 = st.session_state.get("refined_Sweepo Bullet 3", default_refinements["Sweepo Bullet 3"])
-    pdf.section_subtitle("Founded and Led Sweepo.ai", "Aug 2024 - Present", bold=True)
-    pdf.section_body(sweepo_b1, bullet=True)
-    pdf.section_body(sweepo_b2, bullet=True)
-    pdf.section_body(sweepo_b3, bullet=True)
+    Auxilary_b1 = st.session_state.get("refined_Auxilary Bullet 1", default_refinements["Auxilary Bullet 1"])
+    Auxilary_b2 = st.session_state.get("refined_Auxilary Bullet 2", default_refinements["Auxilary Bullet 2"])
+    Auxilary_b3 = st.session_state.get("refined_Auxilary Bullet 3", default_refinements["Auxilary Bullet 3"])
+    pdf.section_subtitle("Founded and Led Auxilary.ai", "Aug 2024 - Present", bold=True)
+    pdf.section_body(Auxilary_b1, bullet=True)
+    pdf.section_body(Auxilary_b2, bullet=True)
+    pdf.section_body(Auxilary_b3, bullet=True)
     
     # Data Privacy bullets
     privacy_b1 = st.session_state.get("refined_Data Privacy Bullet 1", default_refinements["Data Privacy Bullet 1"])
