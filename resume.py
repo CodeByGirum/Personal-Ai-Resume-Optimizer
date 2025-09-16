@@ -455,10 +455,10 @@ refine_prompt_templates = {
     # Summary Section
     "Summary": """Rewrite the professional summary to emphasize {key_skills}, {technical_skills}, {ds_tools}, and incorporate relevant points from {original}, ensuring alignment with {key_requirements}.
     Format:
-    - Start with a descriptive role phrase from the job discription (e.g., "Data Scientist", "AI Engineer", "Machine Learning Expert").
-    - Keep it within 2-3 lines
-    - Tone: energetic and engaging, not flat or generic.
-    - Length: 2–3 concise sentences (max 250 characters total).
+    - Start the summary sentence with a relevant title or word from the job discription (e.g., "Data Scientist", "AI Engineer", "Machine Learning Expert").
+    - Keep it within 1-2 lines
+    - Tone: energetic and engaging. Simple business casual professional words
+    - maximum 250 characters total prefer lower count than that.
 
     Rewrite the original summary to be more aligned with the JD.
     Examples:
