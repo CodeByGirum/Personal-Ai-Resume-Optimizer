@@ -671,45 +671,48 @@ def default_keywords():
 
 # --- Sidebar: Refine Specific Sections ---
 with st.sidebar.expander("Refine Specific Sections"):
+    select_all = st.checkbox("Select All Sections")
+
     st.markdown("**Summary of Qualifications**")
-    refine_summary = st.checkbox("Summary")
-    
+    refine_summary = st.checkbox("Summary", value=select_all)
+
     st.markdown("**Education**")
-    refine_ds = st.checkbox("Data Science Skills")
-    refine_cs = st.checkbox("CS Skills")
-    refine_econ = st.checkbox("Economics Skills")
-    
+    refine_ds = st.checkbox("Data Science Skills", value=select_all)
+    refine_cs = st.checkbox("CS Skills", value=select_all)
+    refine_econ = st.checkbox("Economics Skills", value=select_all)
+
     st.markdown("**Technical Skills**")
-    refine_tech = st.checkbox("Technical Skills")
-    
+    refine_tech = st.checkbox("Technical Skills", value=select_all)
+
     st.markdown("**Relevant Experience**")
     st.markdown("Intel Corporation (Graduate Technical Intern)")
-    refine_intel1 = st.checkbox("Intel Corp Bullet 1")
-    refine_intel2 = st.checkbox("Intel Corp Bullet 2")
-    refine_intel3 = st.checkbox("Intel Corp Bullet 3")
-    
+    refine_intel1 = st.checkbox("Intel Corp Bullet 1", value=select_all)
+    refine_intel2 = st.checkbox("Intel Corp Bullet 2", value=select_all)
+    refine_intel3 = st.checkbox("Intel Corp Bullet 3", value=select_all)
+
     st.markdown("NW Natural (Financial Analytics Intern)")
-    refine_nw1 = st.checkbox("NW Natural Bullet 1")
-    refine_nw2 = st.checkbox("NW Natural Bullet 2")
-    refine_nw3 = st.checkbox("NW Natural Bullet 3")
-    
+    refine_nw1 = st.checkbox("NW Natural Bullet 1", value=select_all)
+    refine_nw2 = st.checkbox("NW Natural Bullet 2", value=select_all)
+    refine_nw3 = st.checkbox("NW Natural Bullet 3", value=select_all)
+
     st.markdown("Selam Consultancy (Data Engineer / Python Developer)")
-    refine_selam1 = st.checkbox("Selam Consultancy Bullet 1")
-    refine_selam2 = st.checkbox("Selam Consultancy Bullet 2")
-    refine_selam3 = st.checkbox("Selam Consultancy Bullet 3")
-    
+    refine_selam1 = st.checkbox("Selam Consultancy Bullet 1", value=select_all)
+    refine_selam2 = st.checkbox("Selam Consultancy Bullet 2", value=select_all)
+    refine_selam3 = st.checkbox("Selam Consultancy Bullet 3", value=select_all)
+
     st.markdown("**Key Projects**")
     st.markdown("Auxilary.ai (Founded and Led)")
-    refine_Auxilary1 = st.checkbox("Auxilary Bullet 1")
-    refine_Auxilary2 = st.checkbox("Auxilary Bullet 2")
-    refine_Auxilary3 = st.checkbox("Auxilary Bullet 3")
-    
+    refine_Auxilary1 = st.checkbox("Auxilary Bullet 1", value=select_all)
+    refine_Auxilary2 = st.checkbox("Auxilary Bullet 2", value=select_all)
+    refine_Auxilary3 = st.checkbox("Auxilary Bullet 3", value=select_all)
+
     st.markdown("Data Privacy and Governance for BI, Privado.ai")
-    refine_privacy1 = st.checkbox("Data Privacy Bullet 1")
-    refine_privacy2 = st.checkbox("Data Privacy Bullet 2")
-    
+    refine_privacy1 = st.checkbox("Data Privacy Bullet 1", value=select_all)
+    refine_privacy2 = st.checkbox("Data Privacy Bullet 2", value=select_all)
+
     st.markdown("**Certifications**")
-    refine_cert = st.checkbox("Certifications Bullet")
+    refine_cert = st.checkbox("Certifications Bullet", value=select_all)
+
     
     if st.button("✨ Refine Selected Sections", use_container_width=True):
         job_desc = st.session_state.job_description
