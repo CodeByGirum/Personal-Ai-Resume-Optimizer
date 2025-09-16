@@ -96,10 +96,10 @@ def call_api(messages):
             "Content-Type": "application/json"
         }
         data = {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4.1-mini",
             "messages": messages,
             "temperature": 0.5,  # Lower temperature for more consistent responses
-            "max_tokens": 1000,  # Increased token limit
+            "max_tokens": 600,  # Increased token limit
             "top_p": 0.9 
         }
         api_url = "https://api.openai.com/v1/chat/completions"
@@ -136,9 +136,9 @@ def call_api(messages):
     
     try:
         status.markdown(f'<div class="progress-text">{progress_messages[model]}</div>', unsafe_allow_html=True)
-        for i in range(100):
-            time.sleep(0.01)  # Smooth animation
-            progress_bar.progress(i + 1)
+        with st.spinner(progress_messages[model]):
+            response = requests.post(api_url, headers=headers, json=data, timeout=30)
+
             
         response = requests.post(api_url, headers=headers, json=data, timeout=30)
         
