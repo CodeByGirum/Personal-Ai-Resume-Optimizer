@@ -453,7 +453,7 @@ default_refinements = {
 # --- Prompt Templates for Job-Specific Refinement ---
 refine_prompt_templates = {
     # Summary Section
-    "Summary": """Rewrite the professional summary to emphasize {key_skills}, {technical_skills}, {ds_tools}, and incorporate relevant points from {original_summary}, ensuring alignment with {key_requirements}.
+    "Summary": """Rewrite the professional summary to emphasize {key_skills}, {technical_skills}, {ds_tools}, and incorporate relevant points from {original}, ensuring alignment with {key_requirements}.
     Format:
     - Start with a descriptive role phrase from the job discription (e.g., "Data Scientist", "AI Engineer", "Machine Learning Expert").
     - Keep it within 2-3 lines
