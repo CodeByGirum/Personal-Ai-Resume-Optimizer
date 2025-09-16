@@ -898,7 +898,7 @@ def generate_pdf_file():
     pdf.section_body(ds_text)
     # CS Skills (MS Computer Science)
     cs_text = st.session_state.get("refined_CS Skills", default_refinements["CS Skills"])
-    pdf.section_subtitle("Master of Science in Computer Science (Ongoing)", "Atlanta, OR", bold=True)
+    pdf.section_subtitle("Master of Science in Computer Science (Ongoing)", "Atlanta, GA", bold=True)
     pdf.set_font("Times", size=13)
     pdf.section_body("Georgia Institute of Technology")
     pdf.set_font("Times", size=13)
