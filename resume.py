@@ -98,7 +98,7 @@ def call_api(messages):
         data = {
             "model": "gpt-4.1-mini",
             "messages": messages,
-            "temperature": 0.5,  # Lower temperature for more consistent responses
+            "temperature": 0.3,  # Lower temperature for more consistent responses
             "max_tokens": 600,  # Increased token limit
             "top_p": 0.9 
         }
@@ -112,8 +112,8 @@ def call_api(messages):
         data = {
             "model": "deepseek-chat",
             "messages": messages,
-            "temperature": 0.5,  # Lower temperature for more consistent responses
-            "max_tokens": 1000,  # Increased token limit
+            "temperature": 0.2,  # Lower temperature for more consistent responses
+            "max_tokens": 500,  # Increased token limit
             "top_p": 0.9
         }
         api_url = DEEPSEEK_API_URL
