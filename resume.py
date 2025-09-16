@@ -453,18 +453,18 @@ default_refinements = {
 # --- Prompt Templates for Job-Specific Refinement ---
 refine_prompt_templates = {
     # Summary Section
-    "Summary": """Rewrite the professional summary to highlight {key_skills}, {technical_skills}, {ds_tools} and {original} from the JD while ensuring alignment with {key_requirements}. 
+    "Summary": """Rewrite the professional summary to emphasize {key_skills}, {technical_skills}, {ds_tools}, and incorporate relevant points from {original_summary}, ensuring alignment with {key_requirements}.
     Format:
-    - Start with a discriptive word like "Data expert" or "AI engineer" or "Data scientist" based on the JD
-    - Keep it within 3-4 concise lines
-    - Write it with exsitment and discriptive tone not boring
-    - Max length: 250 characters
+    - Start with a descriptive role phrase from the job discription (e.g., "Data Scientist", "AI Engineer", "Machine Learning Expert").
+    - Keep it within 2-3 lines
+    - Tone: energetic and engaging, not flat or generic.
+    - Length: 2–3 concise sentences (max 250 characters total).
 
     Rewrite the original summary to be more aligned with the JD.
     Examples:
-    1. High achieving Machine learning engineer with an M.S. in Applied Data Science. Skilled in SQL, Python, and Power BI to drive business decisions through analytics and visualization.
-    2. Data Scientist with a masters in applied data science and 3 years of analytics expertise. Proficient in Python, SQL, and R, with a strong portfolio of advanced data science projects involving neural networks, machine learning, and large language models.
-    3. AI Engineer with expertise in developing scalable ML solutions. Adept in Python, TensorFlow, and cloud computing, driving innovation in predictive analytics and automation.
+    1. Business Analyst with 3+ years of experience aligning business needs with AI and analytics solutions. Skilled in SQL, Python, and visualization tools with a focus on delivering efficiency and growth.
+    2. Data Engineer with 3+ years of experience designing pipelines and managing large-scale datasets. Skilled in SQL, Python, and ETL frameworks with expertise in ensuring clean, reliable data for analytics.
+    3. Business Intelligence Analyst with an M.S. in Applied Data Science and 3+ years of experience building dashboards and insights in Power BI and SQL. Adept at transforming raw data into actionable recommendations for stakeholders.
 
     Original: {original}""",
     
