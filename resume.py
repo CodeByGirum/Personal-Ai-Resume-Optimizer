@@ -490,33 +490,39 @@ refine_prompt_templates = {
     # Intel Corporation Bullets
     "Intel Corp Bullet 1": """Emphasize {automation_terms} using {metrics}. 
     Format: "Verb + what + how + result" structure
+    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
     Max length: 120 characters
     Original: {original}""",
     
     "Intel Corp Bullet 2": """Highlight cross-functional collaboration from JD. 
     Format: Start with action verb | Max length: 120 characters
+    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
     Original: {original}""",
     
     "Intel Corp Bullet 3": """Focus on operational support aspects from JD. 
     Format: Quantify impact | Max length: 120 characters
+    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
     Original: {original}""",
 
     # NW Natural Bullets
     "NW Natural Bullet 1": """Emphasize real-time systems from JD. 
     Format: Technical stack + business impact
     Example: "Built X using Y, enabling Z% faster decisions"
+    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
     Max length: 120 characters
     Original: {original}""",
     
     "NW Natural Bullet 2": """Quantify financial impacts using JD's {metrics}. 
     Format: $$$ numbers or percentages
     Example: "Reduced costs by X% through Y..."
+    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
     Max length: 120 characters
     Original: {original}""",
     
     "NW Natural Bullet 3": """Highlight presentation/communication skills. 
     Format: Audience size + decision impact
     Example: "Presented to X stakeholders, influencing Y decision"
+    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
     Max length: 120 characters
     Original: {original}""",
 
