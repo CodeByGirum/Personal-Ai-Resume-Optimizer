@@ -455,10 +455,9 @@ refine_prompt_templates = {
     # Summary Section
     "Summary": """Rewrite the professional summary to emphasize {key_skills}, {technical_skills}, {ds_tools}, and incorporate relevant points from {original}, ensuring alignment with {key_requirements}.
     Format:
-    - Start the summary sentence with a relevant title or word from the job discription (e.g., "Data Scientist", "AI Engineer", "Machine Learning Expert").
     - Keep it within 1-2 lines
     - Tone: energetic and engaging. Simple business casual professional words
-    - maximum 250 characters total prefer lower count than that.
+    - maximum 250 characters total, prefer a lower count than that.
 
     Rewrite the original summary to be more aligned with the JD.
     Examples:
@@ -490,39 +489,39 @@ refine_prompt_templates = {
     # Intel Corporation Bullets
     "Intel Corp Bullet 1": """Emphasize {automation_terms} using {metrics}. 
     Format: "Verb + what + how + result" structure
-    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
+    Make sure to stay truthful with the {original} but fine-tune it, making it relevant for the JD (Job description). DO NOT exaggerate achievements. (I was an intern)
     Max length: 120 characters
     Original: {original}""",
     
     "Intel Corp Bullet 2": """Highlight cross-functional collaboration from JD. 
     Format: Start with action verb | Max length: 120 characters
-    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
+    Make sure to stay truthful with the {original} but fine-tune it, making it relevant for the JD (Job description). DO NOT exaggerate achievements. (I was an intern)
     Original: {original}""",
     
     "Intel Corp Bullet 3": """Focus on operational support aspects from JD. 
     Format: Quantify impact | Max length: 120 characters
-    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
+    Make sure to stay truthful with the {original} but fine-tune it, making it relevant for the JD (Job description)
     Original: {original}""",
 
     # NW Natural Bullets
     "NW Natural Bullet 1": """Emphasize real-time systems from JD. 
     Format: Technical stack + business impact
     Example: "Built X using Y, enabling Z% faster decisions"
-    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
+    Make sure to stay truthful with the {original} but fine-tune it, making it relevant for the JD (Job description). DO NOT exaggerate achievements. (I was an intern)
     Max length: 120 characters
     Original: {original}""",
     
     "NW Natural Bullet 2": """Quantify financial impacts using JD's {metrics}. 
     Format: $$$ numbers or percentages
     Example: "Reduced costs by X% through Y..."
-    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
+    Make sure to stay truthful with the {original} but fine-tune it, making it relevant for the JD (Job description). DO NOT exaggerate achievements. (I was an intern)
     Max length: 120 characters
     Original: {original}""",
     
     "NW Natural Bullet 3": """Highlight presentation/communication skills. 
     Format: Audience size + decision impact
     Example: "Presented to X stakeholders, influencing Y decision"
-    Make sure to stay truthfull with the {original} but finetune it making it relevant for the JD (Job discription)
+    Make sure to stay truthful with the {original} but fine-tune it, making it relevant for the JD (Job description). DO NOT exaggerate achievements. (I was an intern)
     Max length: 120 characters
     Original: {original}""",
 
